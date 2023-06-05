@@ -6,6 +6,9 @@ class GradientLinearProgressIndicator extends StatelessWidget {
   final double progress;
   final double height;
   final double? width;
+  final TextStyle? titleStyle;
+  final TextStyle? progressStyle;
+  final String? title;
   final List<Color>? colors;
 
   const GradientLinearProgressIndicator({
@@ -13,6 +16,9 @@ class GradientLinearProgressIndicator extends StatelessWidget {
     required this.progress,
     this.height = 20,
     this.width,
+    this.title,
+    this.titleStyle,
+    this.progressStyle,
     this.colors,
   }) : super(key: key);
 
@@ -20,6 +26,20 @@ class GradientLinearProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title ?? '',
+              style: titleStyle,
+            ),
+            Text(
+              '${(progress * 100).round()}%',
+              style: progressStyle,
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
         Stack(
           children: [
             Container(
